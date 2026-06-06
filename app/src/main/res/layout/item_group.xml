@@ -4,58 +4,72 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/secondary_charcoal"
     app:cardCornerRadius="16dp"
-    app:cardElevation="2dp">
+    app:cardElevation="4dp"
+    app:strokeColor="@color/bg_champagne"
+    app:strokeWidth="0.5dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="120dp">
 
-        <TextView
-            android:id="@+id/tvGroupName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvGroupCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
-            android:textColor="?attr/colorPrimary" />
-
-        <TextView
-            android:id="@+id/tvGroupDescription"
+        <!-- Placeholder for background image with champagne tint -->
+        <ImageView
+            android:id="@+id/ivGroupBg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:maxLines="2"
-            android:ellipsize="end"
-            android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/gradient_overlay"
+            android:alpha="0.3"
+            android:tint="@color/bg_champagne" />
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvGroupName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tech Innovators"
+                android:textColor="@color/accent_gold"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvMemberCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:textAppearance="@style/TextAppearance.Material3.LabelSmall" />
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_compatibility_badge"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
+                android:text="8.2k Members"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnJoinGroup"
-                style="@style/Widget.Material3.Button.TonalButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="Join" />
-        </RelativeLayout>
-    </LinearLayout>
+                android:layout_height="36dp"
+                android:layout_gravity="end"
+                android:backgroundTint="@color/accent_gold"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Join Group"
+                android:textColor="@color/primary_navy"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:cornerRadius="18dp" />
+
+        </LinearLayout>
+    </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>
