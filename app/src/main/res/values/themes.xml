@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Match_make" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_navy</item>
+        <item name="colorOnPrimary">@color/bg_champagne</item>
+        <item name="colorSecondary">@color/secondary_charcoal</item>
+        <item name="android:windowBackground">@color/primary_navy</item>
+        <item name="android:textColorPrimary">@color/bg_champagne</item>
+    </style>
+
+    <style name="Theme.Match_make" parent="Base.Theme.Match_make" />
+</resources>

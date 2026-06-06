@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "366298982014",
+    "project_id": "chatapp-51d89",
+    "storage_bucket": "chatapp-51d89.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:366298982014:android:d4890add46158f1d89da2f",
+        "android_client_info": {
+          "package_name": "com.dbright.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9xLAAaXqeKHYHVkrA9bdUvk9YNqXuAYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

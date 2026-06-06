@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Luxurious Palette -->
+    <color name="primary_navy">#0B132B</color>
+    <color name="accent_gold">#D4AF37</color>
+    <color name="accent_emerald">#22C55E</color>
+    <color name="bg_champagne">#F5E6CA</color>
+    <color name="secondary_charcoal">#1C1C1C</color>
+    <color name="highlight_rose">#E8C4C4</color>
+
+    <!-- Compatibility Mapping -->
+    <color name="match_strong">#22C55E</color> <!-- Emerald -->
+    <color name="match_moderate">#D4AF37</color> <!-- Gold -->
+    <color name="match_weak">#E8C4C4</color> <!-- Rose Quartz -->
+</resources>
