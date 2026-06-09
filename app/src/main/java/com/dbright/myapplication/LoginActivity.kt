@@ -39,6 +39,18 @@ class LoginActivity : AppCompatActivity() {
         binding.tvRegisterLink.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
+
+        binding.btnApple.setOnClickListener {
+            Toast.makeText(this, "Apple Sign-in coming soon", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.btnGoogle.setOnClickListener {
+            Toast.makeText(this, "Google Sign-in coming soon", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.tvForgotPassword.setOnClickListener {
+            Toast.makeText(this, "Password reset coming soon", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun checkUserProfile() {

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -56,22 +57,38 @@ class MainActivity : AppCompatActivity() {
         tvOverallScore = findViewById(R.id.tvOverallScore)
 
         rvMatches.layoutManager = LinearLayoutManager(this)
+
+        findViewById<View>(R.id.btnViewDetails).setOnClickListener {
+            startActivity(Intent(this, UserProfileActivity::class.java))
+        }
     }
 
     private fun setupBottomNav() {
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        
+        val homeSection = findViewById<View>(R.id.llHomeContent)
+        val exploreSection = findViewById<View>(R.id.rvEvents)
+        val messagesSection = findViewById<View>(R.id.layoutGroups)
+
         bottomNav.setOnItemSelectedListener { item ->
+            // Reset visibility
+            homeSection.visibility = View.GONE
+            exploreSection.visibility = View.GONE
+            messagesSection.visibility = View.GONE
+            
             when (item.itemId) {
                 R.id.navigation_home -> {
-                    // Already on Home/Dashboard
+                    homeSection.visibility = View.VISIBLE
                     true
                 }
                 R.id.navigation_explore -> {
-                    // Could navigate to a separate Explore fragment or view
+                    exploreSection.visibility = View.VISIBLE
+                    fetchEvents()
                     true
                 }
                 R.id.navigation_messages -> {
-                    // Navigate to Chats
+                    messagesSection.visibility = View.VISIBLE
+                    setupGroupsAndChats()
                     true
                 }
                 R.id.navigation_profile -> {
@@ -81,6 +98,49 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+
+    private fun fetchEvents() {
+        val rvEvents = findViewById<RecyclerView>(R.id.rvEvents)
+        rvEvents.layoutManager = LinearLayoutManager(this)
+        db.collection("events").get().addOnSuccessListener { snapshot ->
+            val events = snapshot.toObjects(Event::class.java)
+            rvEvents.adapter = EventsAdapter(events) { event ->
+                Toast.makeText(this, "Interested in ${event.title}", Toast.LENGTH_SHORT).show()
+            }
+            rvEvents.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setupGroupsAndChats() {
+        val layoutGroups = findViewById<View>(R.id.layoutGroups)
+        val tabLayout = layoutGroups.findViewById<com.google.android.material.tabs.TabLayout>(R.id.groupsTabLayout)
+        val rvGroups = layoutGroups.findViewById<RecyclerView>(R.id.rvGroupsList)
+        val rvChats = layoutGroups.findViewById<RecyclerView>(R.id.rvChatsList)
+
+        rvGroups.layoutManager = LinearLayoutManager(this)
+        rvChats.layoutManager = LinearLayoutManager(this)
+
+        db.collection("groups").get().addOnSuccessListener { snapshot ->
+            val groups = snapshot.toObjects(InterestGroup::class.java)
+            rvGroups.adapter = GroupsAdapter(groups) { group ->
+                Toast.makeText(this, "Joined ${group.name}", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        tabLayout.addOnTabSelectedListener(object : com.google.android.material.tabs.TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: com.google.android.material.tabs.TabLayout.Tab?) {
+                if (tab?.position == 0) {
+                    rvGroups.visibility = View.VISIBLE
+                    rvChats.visibility = View.GONE
+                } else {
+                    rvGroups.visibility = View.GONE
+                    rvChats.visibility = View.VISIBLE
+                }
+            }
+            override fun onTabUnselected(tab: com.google.android.material.tabs.TabLayout.Tab?) {}
+            override fun onTabReselected(tab: com.google.android.material.tabs.TabLayout.Tab?) {}
+        })
     }
 
     private fun fetchCurrentUserAndMatches() {

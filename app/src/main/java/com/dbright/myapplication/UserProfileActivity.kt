@@ -34,11 +34,11 @@ class UserProfileActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.setNavigationOnClickListener { finish() }
 
-        findViewById<MaterialButton>(R.id.btnEditProfile).setOnClickListener {
+        findViewById<com.google.android.material.floatingactionbutton.FloatingActionButton>(R.id.fabEditProfile).setOnClickListener {
             startActivity(Intent(this, ProfileSetupActivity::class.java))
         }
 
-        findViewById<MaterialButton>(R.id.btnLogout).setOnClickListener {
+        findViewById<com.google.android.material.button.MaterialButton>(R.id.btnLogout).setOnClickListener {
             auth.signOut()
             val intent = Intent(this, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -46,7 +46,43 @@ class UserProfileActivity : AppCompatActivity() {
             finish()
         }
 
+        setupTabs()
         loadUserData()
+    }
+
+    private fun setupTabs() {
+        val tabs = findViewById<com.google.android.material.tabs.TabLayout>(R.id.profileTabs)
+        tabs.addOnTabSelectedListener(object : com.google.android.material.tabs.TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: com.google.android.material.tabs.TabLayout.Tab?) {
+                updateTabContent(tab?.position ?: 0)
+            }
+            override fun onTabUnselected(tab: com.google.android.material.tabs.TabLayout.Tab?) {}
+            override fun onTabReselected(tab: com.google.android.material.tabs.TabLayout.Tab?) {}
+        })
+    }
+
+    private fun updateTabContent(position: Int) {
+        val cgActivities = findViewById<ChipGroup>(R.id.cgActivities)
+        val cgFlags = findViewById<ChipGroup>(R.id.cgFlags)
+        val llDetails = findViewById<android.view.View>(R.id.llProfileDetails)
+
+        when (position) {
+            0 -> { // Traits
+                llDetails.visibility = android.view.View.VISIBLE
+                cgActivities.visibility = android.view.View.GONE
+                cgFlags.visibility = android.view.View.GONE
+            }
+            1 -> { // Interests
+                llDetails.visibility = android.view.View.GONE
+                cgActivities.visibility = android.view.View.VISIBLE
+                cgFlags.visibility = android.view.View.GONE
+            }
+            2 -> { // Flags
+                llDetails.visibility = android.view.View.GONE
+                cgActivities.visibility = android.view.View.GONE
+                cgFlags.visibility = android.view.View.VISIBLE
+            }
+        }
     }
 
     override fun onResume() {
@@ -74,7 +110,7 @@ class UserProfileActivity : AppCompatActivity() {
 
     private fun displayProfile(user: UserProfile) {
         findViewById<TextView>(R.id.tvProfileName).text = user.name
-        findViewById<TextView>(R.id.tvProfileOccupation).text = user.occupation
+        findViewById<TextView>(R.id.tvProfileSubtitle).text = user.occupation
         findViewById<TextView>(R.id.tvQuote).text = if (user.favoriteQuote.isNotEmpty()) "\"${user.favoriteQuote}\"" else ""
         
         findViewById<TextView>(R.id.tvCommStyle).text = "Communication: ${user.communicationStyle.ifEmpty { "Not set" }}"
@@ -91,9 +127,13 @@ class UserProfileActivity : AppCompatActivity() {
             })
         }
 
-        val ivProfile = findViewById<ImageView>(R.id.ivProfileLarge)
+        val ivProfile = findViewById<ImageView>(R.id.ivProfileCircle)
         if (user.profileImageUrl.isNotEmpty()) {
-            Glide.with(this).load(user.profileImageUrl).into(ivProfile)
+            Glide.with(this).load(user.profileImageUrl).circleCrop().into(ivProfile)
+        }
+        val ivProfileLarge = findViewById<ImageView>(R.id.ivProfileLarge)
+        if (user.profileImageUrl.isNotEmpty()) {
+            Glide.with(this).load(user.profileImageUrl).centerCrop().into(ivProfileLarge)
         }
 
         val cgActivities = findViewById<ChipGroup>(R.id.cgActivities)
@@ -102,24 +142,24 @@ class UserProfileActivity : AppCompatActivity() {
             cgActivities.addView(Chip(this).apply { text = activity })
         }
 
-        val cgGreenFlags = findViewById<ChipGroup>(R.id.cgGreenFlags)
-        cgGreenFlags.removeAllViews()
+        val cgFlags = findViewById<ChipGroup>(R.id.cgFlags)
+        cgFlags.removeAllViews()
         user.greenFlags.forEach { flag ->
-            cgGreenFlags.addView(Chip(this).apply { 
+            cgFlags.addView(Chip(this).apply { 
                 text = flag
                 setChipBackgroundColorResource(android.R.color.holo_green_light)
                 setTextColor(Color.WHITE)
             })
         }
 
-        val cgRedFlags = findViewById<ChipGroup>(R.id.cgRedFlags)
-        cgRedFlags.removeAllViews()
         user.redFlags.forEach { flag ->
-            cgRedFlags.addView(Chip(this).apply {
+            cgFlags.addView(Chip(this).apply {
                 text = flag
                 setChipBackgroundColorResource(android.R.color.holo_red_light)
                 setTextColor(Color.WHITE)
             })
         }
+        
+        findViewById<TextView>(R.id.tvCompatPercentage).text = "100%" // Own profile
     }
 }

@@ -12,13 +12,13 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="wrap_content">
 
         <!-- Placeholder for background image with champagne tint -->
         <ImageView
             android:id="@+id/ivGroupBg"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="120dp"
             android:scaleType="centerCrop"
             android:src="@drawable/gradient_overlay"
             android:alpha="0.3"
@@ -26,7 +26,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
 
@@ -40,10 +40,29 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvGroupCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Technology"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvGroupDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Group description goes here"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
                 android:id="@+id/tvMemberCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/bg_compatibility_badge"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="2dp"
@@ -51,16 +70,12 @@
                 android:textColor="@color/white"
                 android:textSize="12sp" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnJoinGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_gravity="end"
+                android:layout_marginTop="8dp"
                 android:backgroundTint="@color/accent_gold"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"

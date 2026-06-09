@@ -18,13 +18,15 @@ class RegisterActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        binding.btnRegister.setOnClickListener {
+        binding.btnContinue.setOnClickListener {
             val email = binding.etEmail.text.toString()
             val pass = binding.etPassword.text.toString()
+            val name = binding.etFullName.text.toString()
 
-            if (email.isNotEmpty() && pass.isNotEmpty()) {
+            if (email.isNotEmpty() && pass.isNotEmpty() && name.isNotEmpty()) {
                 auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
+                        // Optionally save the name to Firestore here or pass it to ProfileSetupActivity
                         startActivity(Intent(this, ProfileSetupActivity::class.java))
                         finish()
                     } else {
@@ -33,7 +35,13 @@ class RegisterActivity : AppCompatActivity() {
                         android.util.Log.e("RegisterActivity", "Registration failed", task.exception)
                     }
                 }
+            } else {
+                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        binding.tvLoginLink.setOnClickListener {
+            finish()
         }
     }
 }

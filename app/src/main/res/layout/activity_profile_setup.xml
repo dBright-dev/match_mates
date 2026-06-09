@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA">
+    android:background="@color/primary_navy">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:text="Customize Your Profile"
             android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+            android:textColor="@color/accent_gold"
             android:textStyle="bold" />
 
         <!-- Basic Info Section -->
@@ -25,6 +26,7 @@
             android:layout_marginTop="24dp"
             android:text="Basic Information"
             android:textStyle="bold"
+            android:textColor="@color/bg_champagne"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"/>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -32,11 +34,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="Full Name"
+            android:textColorHint="@color/bg_champagne"
+            app:boxStrokeColor="@color/accent_gold"
+            app:hintTextColor="@color/accent_gold"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -44,11 +50,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:hint="Occupation"
+            android:textColorHint="@color/bg_champagne"
+            app:boxStrokeColor="@color/accent_gold"
+            app:hintTextColor="@color/accent_gold"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etOccupation"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- 🧠 Personality & Behavior -->
@@ -58,21 +68,23 @@
             android:layout_marginTop="24dp"
             android:text="🧠 Personality &amp; Behavior"
             android:textStyle="bold"
+            android:textColor="@color/bg_champagne"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textColor="@color/bg_champagne"
             android:text="Communication Style"/>
         <RadioGroup
             android:id="@+id/rgCommunication"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <RadioButton android:id="@+id/rbDirect" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Direct"/>
-            <RadioButton android:id="@+id/rbEmpathetic" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Empathetic"/>
-            <RadioButton android:id="@+id/rbAnalytical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Analytical"/>
+            <RadioButton android:id="@+id/rbDirect" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Direct" android:textColor="@color/white" android:buttonTint="@color/accent_gold"/>
+            <RadioButton android:id="@+id/rbEmpathetic" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Empathetic" android:textColor="@color/white" android:buttonTint="@color/accent_gold"/>
+            <RadioButton android:id="@+id/rbAnalytical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Analytical" android:textColor="@color/white" android:buttonTint="@color/accent_gold"/>
         </RadioGroup>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -80,17 +92,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="Decision Making (Logical, Emotional...)"
+            android:textColorHint="@color/bg_champagne"
+            app:boxStrokeColor="@color/accent_gold"
+            app:hintTextColor="@color/accent_gold"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDecisionMaking"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:textColor="@color/bg_champagne"
             android:text="Energy Level (Introvert to Extrovert)"/>
         <com.google.android.material.slider.Slider
             android:id="@+id/sliderEnergy"
@@ -99,7 +116,10 @@
             android:valueFrom="1"
             android:valueTo="10"
             android:stepSize="1"
-            android:value="5" />
+            android:value="5"
+            app:thumbColor="@color/accent_gold"
+            app:trackColorActive="@color/accent_gold"
+            app:trackColorInactive="@color/secondary_charcoal" />
 
         <!-- 🎯 Interests & Lifestyle -->
         <TextView
@@ -108,6 +128,7 @@
             android:layout_marginTop="24dp"
             android:text="🎯 Interests &amp; Lifestyle"
             android:textStyle="bold"
+            android:textColor="@color/bg_champagne"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"/>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -115,32 +136,41 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="Favorite Genres (Music, Books...)"
+            android:textColorHint="@color/bg_champagne"
+            app:boxStrokeColor="@color/accent_gold"
+            app:hintTextColor="@color/accent_gold"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etGenres"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:textColor="@color/bg_champagne"
             android:text="Preferred Activities (Select multiple)"/>
-        <CheckBox android:id="@+id/cbOutdoors" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Outdoors"/>
-        <CheckBox android:id="@+id/cbTech" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tech Tinkering"/>
-        <CheckBox android:id="@+id/cbCreative" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Creative Arts"/>
+        <CheckBox android:id="@+id/cbOutdoors" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Outdoors" android:textColor="@color/white" android:buttonTint="@color/accent_gold"/>
+        <CheckBox android:id="@+id/cbTech" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tech Tinkering" android:textColor="@color/white" android:buttonTint="@color/accent_gold"/>
+        <CheckBox android:id="@+id/cbCreative" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Creative Arts" android:textColor="@color/white" android:buttonTint="@color/accent_gold"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:hint="Dietary Preferences"
+            android:textColorHint="@color/bg_champagne"
+            app:boxStrokeColor="@color/accent_gold"
+            app:hintTextColor="@color/accent_gold"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDiet"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- 🚦 Red & Green Flags -->
@@ -150,6 +180,7 @@
             android:layout_marginTop="24dp"
             android:text="🚦 Red &amp; Green Flags"
             android:textStyle="bold"
+            android:textColor="@color/bg_champagne"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"/>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -157,11 +188,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="Green Flags (Comma separated)"
+            android:textColorHint="@color/bg_champagne"
+            app:boxStrokeColor="@color/accent_gold"
+            app:hintTextColor="@color/accent_gold"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etGreenFlags"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -169,11 +204,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:hint="Red Flags (Comma separated)"
+            android:textColorHint="@color/bg_champagne"
+            app:boxStrokeColor="@color/accent_gold"
+            app:hintTextColor="@color/accent_gold"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etRedFlags"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- 🎨 Optional Enhancements -->
@@ -183,6 +222,7 @@
             android:layout_marginTop="24dp"
             android:text="🎨 Optional Enhancements"
             android:textStyle="bold"
+            android:textColor="@color/bg_champagne"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"/>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -190,11 +230,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="Favorite Quote"
+            android:textColorHint="@color/bg_champagne"
+            app:boxStrokeColor="@color/accent_gold"
+            app:hintTextColor="@color/accent_gold"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etQuote"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
@@ -204,6 +248,8 @@
             android:layout_marginTop="32dp"
             android:padding="16dp"
             android:text="Save &amp; Complete Profile"
+            android:textColor="@color/primary_navy"
+            android:backgroundTint="@color/accent_gold"
             app:cornerRadius="12dp" />
 
         <Space
